@@ -1,0 +1,47 @@
+@import '../../variables.scss';
+
+.header {
+    background-color: $secondary-color;
+    padding: $indent-m 10%;
+    border-bottom: 1px solid $black-color;
+
+    &__content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    &__logo {
+        font-size: $fontsize-xl;
+    }
+
+    &__menu {
+        list-style: none;
+
+        a {
+            text-decoration: none;
+            color: inherit;
+
+            &.active, 
+            &:hover {
+                color: $text-color-hovered;
+            }
+        }
+
+        &__item {
+            display: inline;
+            padding: 0 $indent-s;
+            font-size: $fontsize-m;
+        }
+
+        &__login {
+            margin-left: $indent-m;
+            padding: $indent-s $indent-m;
+            background-color: $white-color;
+            color: $text-color;
+            cursor: pointer;
+            border: 1px solid $black-color;
+            border-radius: $indent-s + $indent-m;
+        }
+    }
+}

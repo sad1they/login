@@ -1,7 +1,18 @@
+import { ReactNode } from 'react'
+import Header from '../Header/Header'
 import './App.scss'
 
-function App() {
-  return <div>Hello</div>
+type AppProp = {
+  children: ReactNode
+}
+
+function App({ children }: AppProp) {
+  return (
+    <>
+      <Header />
+      {children}
+    </>
+  )
 }
 
 export default App

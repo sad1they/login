@@ -1,0 +1,31 @@
+@import '../../variables.scss';
+
+.form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    padding: $indent-s 0;
+
+    &__field {
+      border-radius: $indent-s;
+      padding: 0 $indent-s;
+      border: 1px dashed $black-color;
+      margin-top: $indent-s;
+      height: $indent-m + $indent-xs;
+    }
+
+    &__btn {
+      margin-left: $indent-m;
+      padding: $indent-s $indent-m;
+      background-color: $secondary-color;
+      color: $text-color;
+      cursor: pointer;
+      border: 1px solid $black-color;
+      border-radius: $indent-s + $indent-m;
+    }
+  }
+}
