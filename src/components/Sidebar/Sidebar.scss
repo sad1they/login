@@ -1,0 +1,29 @@
+@import '../../variables.scss';
+
+.sidebar {
+  width: 25%;
+  padding: 0 $indent-xl;
+
+  &__list {
+    list-style: none;
+
+    &__item {
+      font-size: $fontsize-m;
+      padding: $indent-s;
+      color: $text-color;
+      cursor: pointer;
+    
+      &:first-letter {
+        text-transform: uppercase;
+      }
+
+      &:hover {
+        color: $text-color-hovered;
+      }
+
+      &__active {
+        font-weight: bold;
+      }
+    }
+  }
+}

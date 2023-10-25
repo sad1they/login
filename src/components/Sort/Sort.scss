@@ -1,0 +1,23 @@
+@import '../../variables.scss';
+
+.sort {
+  display: flex;
+  justify-content: flex-end;
+  padding: $indent-m 10%;
+
+  &__select {
+    background-color: $white-color;
+    box-sizing: border-box; 
+    box-shadow: 0 1px 0 1px rgba(0,0,0,.04); 
+    border: 1px solid $grey-color;
+    border-radius: .5em;
+    display: block; 
+    color: $text-color; 
+    font-size: $fontsize-m;
+    font-weight: bold; 
+    line-height: $lineheight-m; 
+    padding: $indent-s ($indent-s * 1.5);
+    width: 100%;
+    max-width: 250px;
+  }
+}

@@ -1,10 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { TStateLogin } from '../../types/types';
+
+const initialState: TStateLogin = {
+    isLogged: false
+}
 
 export const isLoggedSlice = createSlice({
     name: 'isLogged',
-    initialState: {
-      isLogged: false
-    },
+    initialState,
     reducers: {
         setLogin: (state) => {
             state.isLogged = !state.isLogged;
