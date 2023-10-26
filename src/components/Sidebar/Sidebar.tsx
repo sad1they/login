@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { TData, TDataItem } from '../../types/types'
-import './Sidebar.scss'
 import { setChildData, setKey } from '../../store/slices/dataSlice'
 import { useEffect } from 'react'
+import './Sidebar.scss'
 
 interface PropSidebar {
   parent: TDataItem[] | undefined
@@ -11,6 +11,7 @@ interface PropSidebar {
 function Sidebar({ parent }: PropSidebar) {
   const dispatch = useDispatch()
   const { key } = useSelector((state: TData) => state?.data)
+  const { childData } = useSelector((state: TData) => state?.data)
 
   useEffect(() => {
     for (const val in parent) {
@@ -20,8 +21,45 @@ function Sidebar({ parent }: PropSidebar) {
     }
   }, [dispatch, key, parent])
 
-  const handleClick = (item: TDataItem) => {
-    dispatch(setKey(item.key))
+  function handleClick(item: TDataItem, e) {
+    e && e.stopPropagation()
+
+    const waitState = async () => {
+      const { payload } = await dispatch(setKey(item.key))
+
+      return payload
+    }
+
+    waitState().then((payload) => {
+      if (item.key === payload && childData) {
+        for (const val of childData) {
+          val.key === payload && dispatch(setChildData(val.children))
+        }
+      }
+    })
+  }
+
+  const showChild = (item: TDataItem) => {
+    return item &&
+      childData &&
+      childData.length &&
+      childData[0].key.startsWith(item.key) ? (
+      <ul className="sidebar__list">
+        {childData.map((item) => (
+          <li
+            key={item.key}
+            className={
+              key === item.key
+                ? 'sidebar__list__item sidebar__list__item__active'
+                : 'sidebar__list__item'
+            }
+            onClick={(e) => handleClick(item, e)}
+          >
+            {item.name}
+          </li>
+        ))}
+      </ul>
+    ) : null
   }
 
   return (
@@ -36,9 +74,10 @@ function Sidebar({ parent }: PropSidebar) {
                   ? 'sidebar__list__item sidebar__list__item__active'
                   : 'sidebar__list__item'
               }
-              onClick={() => handleClick(item)}
+              onClick={(e) => handleClick(item, e)}
             >
               {item.name}
+              {showChild(item)}
             </li>
           ))
         ) : (

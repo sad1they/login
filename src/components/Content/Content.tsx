@@ -21,7 +21,7 @@ function Content() {
   return (
     <div className="main">
       <div className="bar">
-        {childData.length > 1 && (
+        {childData && childData.length > 1 && (
           <>
             <Search />
             <Sort />
@@ -29,7 +29,7 @@ function Content() {
         )}
       </div>
       <div className="content">
-        {childData.length ? (
+        {childData && childData.length ? (
           filterItems()
         ) : (
           <p className="content__message">No items</p>
